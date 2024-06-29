@@ -7,17 +7,16 @@
     3. todoEnv\Scripts\activate
     4. pip freeze
     5. pip install django
-    6. pip freeze (to see django installed)
+    6. pip freeze (to see if django installed)
 
 # Creating Project and app, migrate db
     7. django-admin startproject djangoToDo
-    8. cd djangoToDo
-    9. django-admin startapp taskToDo 
-    10. ls
-    12. python manage.py migrate
+    8. django-admin startapp taskToDo 
+    9. ls (see if there is manage.py in the list)
+    10. python manage.py migrate(optional)
 
 # Running Application
-    13. python manage.py runserver
+    12. python manage.py runserver
 
 # Note:
-    14. Add templates and static folder in taskToDo
+    13. Add templates and static folder in taskToDo
