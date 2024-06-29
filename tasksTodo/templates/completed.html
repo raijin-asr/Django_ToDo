@@ -6,12 +6,14 @@
   {% include 'add_new_header.html'%}
 
   {% include 'nav.html'%}
-    
+
+  {% block content %}
     <!-- Tasks -->
     <section
       class="flex flex-1 flex-wrap justify-center gap-3 bg-[#fff0] w-10/12 md:w-11/12 h-full mb-3 rounded-2xl p-3 overflow-y-auto scrollbar-hide"
     >
       <!-- Task card -->
+      {%for cTask in completed_tasks%}
       <div
         class="w-[355px] flex flex-col shadow-md bg-white h-[120px] rounded-xl p-3"
       >
@@ -23,11 +25,11 @@
               <h1
                 class="text-green-500 font-semibold text-xl italic line-through"
               >
-                Create a ToDo App with Django
+              {{cTask.title}}
               </h1>
             </a>
             <p class="text-gray-500 text-md">
-              The app will contain the following...
+              {{cTask.description | slice:":35"}}...
             </p>
           </div>
           <!-- Right: Toggle complete mode -->
@@ -47,6 +49,8 @@
           </a>
         </div>
       </div>
+      {%endfor%}
     </section>
+    {% endblock %}
 
     {% include 'footer.html'%}
