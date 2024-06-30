@@ -1,4 +1,4 @@
-{% include 'header.html'%}
+{% include 'top_header.html'%}
 
   <body
     class="bg-[#cfcfcf] flex flex-col items-center justify-center gap-4 h-screen"
@@ -16,24 +16,26 @@
           <!-- Left: Title and Description -->
           <div>
             <h1 class="text-green-500 font-semibold text-xl">
-              Create a ToDo App with Django
+              {{task.title}}
             </h1>
             <br />
             <h2 class="text-blue-500 font-bold">
               Status:
+              {% if task.is_completed %}
               <span class="font-medium text-green-400"
                 >Completed <i class="bx bxs-badge-check"></i
               ></span>
+              {% else %}
+              <span class="font-medium text-red-400"
+                >Pending <i class="bx bxs-time-five"></i>
+              </span>
+              {% endif %}
             </h2>
             <h2 class="text-gray-500 font-bold italic underline mt-3">
               Description
             </h2>
             <p class="text-gray-500 text-md">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit, urna
-              consequat felis vehicula class ultricies mollis dictumst, aenean
-              non a in donec nulla. Phasellus ante pellentesque erat cum risus
-              consequat imperdiet aliquam, integer placerat et turpis mi eros
-              nec lobortis taciti, vehicula nisl litora.
+              {{task.description}} 
             </p>
           </div>
           <!-- Right: Toggle complete mode -->
@@ -47,7 +49,7 @@
         <!-- Bottom: Time and Date | Delete -->
         <div class="flex flex-row justify-between">
           <h2 class="text-gray-500 font-bold">
-            Due Today <span class="font-medium text-gray-400">12:00 pm</span>
+            Due {{task.due_date}} <span class="font-medium text-gray-400">{{task.due_time}}</span>
           </h2>
           <a href="{% url 'delete_task' %}">
             <i class="bx bxs-trash bx-sm text-red-500"></i>

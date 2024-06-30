@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Task
 
 # Create your views here.
 def index(request):
-    tasks= Task.objects.all() # Get all tasks from the database
+    tasks= Task.objects.all().order_by('-id') # Get all tasks from the database
     return render(request, 'index.html',{ 
         'tasks': tasks # Pass the tasks to the template
     })
@@ -23,10 +23,37 @@ def remaining_task(request):
     })
 
 def add_task(request):
-    return render(request, 'add_task.html')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        due_date = request.POST.get('due_date')
+        due_time = request.POST.get('due_time')
+        is_completed= False
+
+        if title!= "" and due_date!= "" and due_time!= "":
+            task= Task(
+                title=title,
+                description=description,
+                due_date=due_date,
+                due_time=due_time, 
+                is_completed=is_completed)
+            task.save() # Save the task to the database
+            return redirect('index') # Redirect to the index page
+    else:
+        return render(request, 'add_task.html')
 
 def delete_task(request):
     return render(request, 'delete.html')
 
-def task_detail(request):
-    return render(request, 'task_detail.html')
+def task_detail(request, task_id):
+    task= Task.objects.get(id=task_id) # Get only one task from the database
+    return render(request, 'task_detail.html',{
+        'task': task # Pass the task to the template
+    })
+
+def toggle_complete(request, task_id):
+    task= Task.objects.get(id=task_id) # Get the task from the database
+    if task: # If the task exists
+        task.is_completed= not task.is_completed # Toggle the is_completed field
+        task.save() # Save the task to the database
+    return redirect('index') # Redirect to the index page

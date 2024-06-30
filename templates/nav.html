@@ -4,19 +4,19 @@
 >
   <a
     href="{% url 'index' %}"
-    class="text-blue-400 transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-3 flex items-center gap-1"
+    class="{% if request.resolver_match.url_name == 'index' %}text-blue-400 transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-3 flex items-center gap-1{% else %}font-semibold text-gray-400 py-1 px-3 flex items-center gap-1{% endif %}"
     ><i class="bx bxs-category"></i>All Tasks</a
   >
   <span class="text-gray-400">|</span>
   <a
     href="{% url 'completed_task' %}"
-    class="font-semibold text-gray-400 py-1 px-3 flex items-center gap-1"
+    class="{% if request.resolver_match.url_name == 'completed_task' %}text-green-400 transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-3 flex items-center gap-1{% else %}font-semibold text-gray-400 py-1 px-3 flex items-center gap-1{% endif %}"
     ><i class="bx bxs-badge-check"></i>Completed</a
   >
   <span class="text-gray-400">|</span>
   <a
-    href=".{% url 'remaining_task' %}"
-    class="font-semibold text-gray-400 py-1 px-3 flex items-center gap-1"
+    href="{% url 'remaining_task' %}"
+    class="{% if request.resolver_match.url_name == 'remaining_task' %}text-red-400 transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-3 flex items-center gap-1{% else %}font-semibold text-gray-400 py-1 px-3 flex items-center gap-1{% endif %}"
     ><i class="bx bxs-sad"></i>Todo</a
   >
 </nav>
