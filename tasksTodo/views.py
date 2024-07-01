@@ -42,8 +42,12 @@ def add_task(request):
     else:
         return render(request, 'add_task.html')
 
-def delete_task(request):
-    return render(request, 'delete.html')
+def delete_task(request,task_id):
+    task= Task.objects.get(id=task_id) # Get the task from the database
+
+    return render(request, 'delete.html',{
+        "task": task, # Pass the task to the template
+    })
 
 def task_detail(request, task_id):
     task= Task.objects.get(id=task_id) # Get only one task from the database
@@ -57,3 +61,9 @@ def toggle_complete(request, task_id):
         task.is_completed= not task.is_completed # Toggle the is_completed field
         task.save() # Save the task to the database
     return redirect('index') # Redirect to the index page
+
+def remove_task(request, task_id):
+    task= Task.objects.get(id=task_id) # Get the task from the database
+    if task:
+        task.delete() # Delete the task from the database
+        return redirect('index') # Redirect to the index page

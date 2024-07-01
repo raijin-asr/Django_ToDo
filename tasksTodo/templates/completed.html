@@ -44,7 +44,7 @@
           <h2 class="text-blue-400 font-bold">
             Completed <i class="bx bxs-badge-check"></i>
           </h2>
-          <a href="{% url 'delete_task' %}">
+          <a href="{% url 'delete_task' task_id=cTask.id%}">
             <i class="bx bxs-trash bx-sm text-red-500"></i>
           </a>
         </div>
