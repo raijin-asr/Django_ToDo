@@ -13,10 +13,12 @@
     7. django-admin startproject djangoToDo
     8. django-admin startapp taskToDo 
     9. ls (see if there is manage.py in the list)
-    10. python manage.py migrate(optional)
+    10. python manage.py createsuperuser(for admin panel)
+    11. python manage.py makemigrations(after model is created for database)
+    12. python manage.py migrate(optional)
 
 # Running Application
-    12. python manage.py runserver
+    13. python manage.py runserver
 
 # Note:
-    13. Add templates and static folder in taskToDo
+    14. Add templates and static folder in taskToDo

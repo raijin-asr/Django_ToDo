@@ -10,4 +10,5 @@
 10. ls
 12. python manage.py migrate
 13. python manage.py runserver
+14. python manage.py createsupersuer (raijinTodo:raijin1234)
 14. Add templates and static folder in taskToDo

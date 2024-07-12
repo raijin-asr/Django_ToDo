@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tasksTodo', # Add this line to the list of installed apps
+    'authentication'
 ]
 
 MIDDLEWARE = [
