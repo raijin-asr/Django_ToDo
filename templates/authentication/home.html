@@ -235,14 +235,16 @@
         <div class="header-blue">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Raijin Todo</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'img/logo.png' %}" alt="logo" style="width: 150px; height: 80px;">
+                    </a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse"
                         id="navcol-1">
                    
                         <form class="form-inline mr-auto" target="_self">
                         </form>
-                        <span class="navbar-text"> <a href="/login" class="login">Log In</a></span>
-                        <a class="btn btn-light action-button" role="button" href="user/add">Sign Up</a>
+                        <span class="navbar-text"> <a href="{% url 'login' %}" class="login">Log In</a></span>
+                        <a class="btn btn-light action-button" role="button" href="{% url 'signup' %}">Sign Up</a>
                     </div>
                 </div>
             </nav>
@@ -251,10 +253,10 @@
                     <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
                         <h1>Welcome To Raijin Todo</h1>
                         <p>This is home page of Raijin todo app.</p>
-                        <a href="/about"><button class="btn btn-light btn-lg action-button" type="button">Learn More</button></a></div>
+                        <a href="#"><button class="btn btn-light btn-lg action-button" type="button">Learn More</button></a></div>
                     <div
                         class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                        <div class="iphone-mockup"><img src="{% static 'img/home_cms.png' %}" class="device">
+                        <div class="iphone-mockup"><img src="{% static 'img/bg.png' %}" class="device">
                             <div class="screen"></div>
                         </div>
                 </div>
