@@ -3,11 +3,16 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 from authentication.models import User
-from django.contrib.auth import authenticate,login as auth_login
+from django.contrib.auth import authenticate,login, logout
+from django.contrib.auth.hashers import check_password
+
 
 # Create your views here.
 def home(request):
     return render(request, 'authentication/home.html')
+
+def todoIndex(request):
+    return render(request, 'todo/index.html')
 
 def signup(request):
     if request.method == 'POST':
@@ -25,25 +30,26 @@ def signup(request):
         messages.error(request, 'User not created')
         return render(request, 'authentication/signup.html')
     
+
 def loginUser(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
 
-        user = authenticate(email=email, password=password)
+        user = authenticate(request, username=username, password=password)
 
-        if user is not None:    
+        if user is not None:
+            login(request, user)
             messages.success(request, 'Login successful')
-            # auth_login(request, user) #
-            # fname = user.first_name
-            return redirect('home')  # Redirect to home after successful login
-        
+            return redirect('todoIndex')  # Redirect to home after successful login
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('login')
         
-    else:
-        return render(request, 'authentication/login.html')
+    return render(request, 'authentication/login.html')
 
-def logout(request):
-    pass # pass is a placeholder that does nothing
+
+def logoutUser(request):
+    logout(request)
+    messages.success(request, 'Logout successful')
+    return redirect('login')
